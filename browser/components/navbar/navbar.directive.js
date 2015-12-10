@@ -6,6 +6,7 @@ app.directive('navbar', function ($state, $location) {
 		templateUrl: '/browser/components/navbar/navbar.html',
 		controller: 'LoginController',
 		link: function (scope) {
+			console.log(scope);
 			scope.pathStartsWithStatePath = function (state) {
 				var partial = $state.href(state);
 				var path = $location.path();

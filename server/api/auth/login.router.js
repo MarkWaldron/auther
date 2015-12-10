@@ -13,7 +13,7 @@ router.post('/', function(req, res, next){
 			if(user.password === req.body.password){
 				req.session.userId = user._id;
 				console.log(req.session, "REQ SESS")
-				res.status(200).send();
+				res.status(200).send(req.session.userId);
 			} else {
 				res.status(401).send();
 			}

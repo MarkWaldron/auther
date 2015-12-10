@@ -27,10 +27,15 @@ app.factory('Auth', function ($http, User) {
     });
   };
 
+  Auth.getCurrentUser = function(){
+    console.log(currentUser);
+    return currentUser;
+  }
+
   Auth.logout = function () {
     return $http.post('/auth/logout', {})
     .then(function(res){
-      return res
+      return res.data;
     })
     .then(null, function(err){
       console.log(err);
