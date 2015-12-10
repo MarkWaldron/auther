@@ -11,6 +11,8 @@ router.post('/', function(req, res, next){
 		User.findOne({email: req.body.email})
 		.then(function(user){
 			if(user.password === req.body.password){
+				req.session.userId = user._id;
+				console.log(req.session, "REQ SESS")
 				res.status(200).send();
 			} else {
 				res.status(401).send();
@@ -19,8 +21,11 @@ router.post('/', function(req, res, next){
 		.then(null, function(err){
 			console.log(err);
 			res.status(401).send();
-		})
-})
+		});
+});
 
 
 module.exports = router;
+
+
+//userId: 'NJfwr0Mrx'

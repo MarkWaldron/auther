@@ -2,12 +2,23 @@
 
 var app = require('express')();
 var path = require('path');
+var session = require('express-session');
+
+app.use(session({
+	secret: 'markandjulieforthewin'
+}));
 
 app.use(require('./logging.middleware'));
 
 app.use(require('./requestState.middleware'));
 
 app.use(require('./statics.middleware'));
+
+app.use(function(req,res,next){
+	console.log(session, "session");
+	if (!req.session.counter) req.session.counter = 0;
+	next();
+});
 
 app.use('/api', require('../api/api.router'));
 
@@ -22,5 +33,6 @@ validFrontendRoutes.forEach(function (stateRoute) {
 });
 
 app.use(require('./error.middleware'));
+
 
 module.exports = app;

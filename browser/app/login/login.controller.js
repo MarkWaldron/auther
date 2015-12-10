@@ -11,4 +11,16 @@ app.controller('LoginController', function ($scope, Auth) {
       console.log(err)
     });
   }
+
+  $scope.logout = function () {
+  	Auth.logout()
+  	.then(function(res){
+      console.log("you are logged out!")
+      
+    })
+    .then(null, function(err){
+      console.log(err)
+    });
+  }
+
 });
