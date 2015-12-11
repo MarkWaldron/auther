@@ -8,4 +8,6 @@ router.use('/signup', require('./signup.router'));
 
 router.use('/login', require('./login.router'));
 
+router.use('/google', require('./google.router'));
+
 module.exports = router;
